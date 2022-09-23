@@ -13,7 +13,6 @@ import lombok.Setter;
 public class OrUser {
 
     long id;
-
     String nickname; //닉네임
     String email; //이메일
     String pw; //비밀번호

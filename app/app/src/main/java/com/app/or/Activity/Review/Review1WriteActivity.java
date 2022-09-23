@@ -18,6 +18,7 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.app.or.Activity.KakaoAPI.FindAddress;
+import com.app.or.Config.Universal;
 import com.app.or.DTO.Address;
 import com.app.or.DTO.MakeReview1;
 import com.app.or.R;
@@ -98,7 +99,7 @@ public class Review1WriteActivity extends AppCompatActivity {
 
         for(int i=0;i<=10;i++){
             editText[i] = (EditText)findViewById(textId[i]);
-            editText[i].setTextSize(Abbre.TextSizeDP);
+            editText[i].setTextSize(Universal.abbr.getTextSizeDP());
             imageView[i] = (ImageView)findViewById(imageId[i]);
         }
         editText[11] = (EditText)findViewById(textId[11]);

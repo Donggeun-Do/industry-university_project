@@ -1,10 +1,9 @@
 package com.oc.api_server.Controller;
 
 
-import com.oc.api_server.Service.Review1Service;
+import com.oc.api_server.Service.ReviewService;
 import com.oc.api_server.VO.OrUser;
-import com.oc.api_server.VO.Review1;
-import com.oc.api_server.VO.SimpleReview1;
+import com.oc.api_server.VO.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,11 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/Review1")
-public class Review1Controller {
+@RequestMapping("/Review")
+public class ReviewController {
 
     @Autowired
-    private Review1Service service;
+    private ReviewService service;
 
 
 
@@ -36,13 +35,13 @@ public class Review1Controller {
         return service.GetListContinue(id);
     }
 
-    @PostMapping("/saveReview1")
+    @PostMapping("/saveReview")
     @ResponseBody
-    public String saveReview1(Review1 review1,HttpServletRequest request){
+    public String saveReview(Review review, HttpServletRequest request){
         try {
             HttpSession session = request.getSession();
             long id = ((OrUser)session.getAttribute("User")).getId();
-            service.SaveReview1(review1,id);
+            service.SaveReview(review,id);
             return "Pass";
         }catch (Exception e){
             e.printStackTrace();

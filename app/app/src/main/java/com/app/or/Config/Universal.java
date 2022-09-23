@@ -10,20 +10,10 @@ import com.app.or.Universal.Security;
 
 public class Universal {
 
-    public static AbbrInterFace abbr;
-    public static HttpsHelper httpsHelper;
-    public static ImageHelper imageHelper;
-    public static ReviewHelper reviewHelper;
-    public static SecurityInterface security;
-
-
-    public Universal() {
-        security = new Security();
-        abbr = new Abbr();
-        httpsHelper = new HttpsHelper();
-        imageHelper = new ImageHelper();
-        reviewHelper = new ReviewHelper();
-    }
-
+    public static final AbbrInterFace abbr = new Abbr();
+    public static final HttpsHelper httpsHelper = new HttpsHelper();
+    public static final ImageHelper imageHelper = new ImageHelper();
+    public static final ReviewHelper reviewHelper = new ReviewHelper();
+    public static final SecurityInterface security = new Security();
 
 }

@@ -31,14 +31,11 @@ public class Stater extends AppCompatActivity {
         checkPermission();
         Universal.abbr.setFiledir(getFilesDir()+"/");
 
-        getAppKeyHash_Debug();
-
         Display display = getWindowManager().getDefaultDisplay();
         DisplayMetrics metrics = new DisplayMetrics();
         display.getMetrics(metrics);
         float density = getResources().getDisplayMetrics().density;
         Universal.abbr.setTextSizeDP((int)((metrics.heightPixels/density)/30));
-
 
         Intent intent;
         if( (new ShareData()).isSaveAccount() ){
@@ -68,25 +65,4 @@ public class Stater extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         }
     }
-
-
-
-    //debug
-    private void getAppKeyHash_Debug() {
-        try {
-            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md;
-                md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                String something = new String(Base64.encode(md.digest(), 0));
-                Log.e("Hash key Debug", something);
-            }
-        } catch (Exception e) {
-            Log.e("name not found", e.toString());
-        }
-    }
-
-
-
 }

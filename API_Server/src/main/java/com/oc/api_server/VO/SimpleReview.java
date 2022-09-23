@@ -3,7 +3,7 @@ package com.oc.api_server.VO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public class SimpleReview1 {
+public class SimpleReview {
     long id;
     String title;
     String simple_main;

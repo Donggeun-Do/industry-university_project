@@ -34,7 +34,7 @@ public class ShareData {
             file.createNewFile();
             FileWriter fw = new FileWriter(file);
             BufferedWriter writer = new BufferedWriter(fw);
-            writer.write(Universal.security.decryption(Email+" "+Password));
+            writer.write(Universal.security.encryption(Email+" "+Password));
             writer.close();
         }catch (Exception e){
             e.printStackTrace();

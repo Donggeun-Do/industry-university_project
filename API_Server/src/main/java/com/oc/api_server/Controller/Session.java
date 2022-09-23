@@ -27,11 +27,10 @@ public class Session {
     public String MakeRSA(HttpServletRequest request){
         try {
             HttpSession session = request.getSession();
-
+            return session.getId();
 
         }catch (Exception e){
             return "ERR";
         }
-        return session.getId();
     }
 }

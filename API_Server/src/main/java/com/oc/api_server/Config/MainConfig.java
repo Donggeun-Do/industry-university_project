@@ -1,7 +1,6 @@
 package com.oc.api_server.Config;
 
-import com.oc.api_server.Repository.Review1Repository;
-import com.oc.api_server.Repository.Review2Repository;
+import com.oc.api_server.Repository.ReviewRepository;
 import com.oc.api_server.Repository.UserRepository;
 import com.oc.api_server.Service.*;
 import com.oc.api_server.interceptor.LoginInterceptor;
@@ -23,10 +22,8 @@ public class MainConfig implements WebMvcConfigurer {
     private UserRepository userRepository;
 
     @Autowired
-    private Review1Repository review1Repository;
+    private ReviewRepository reviewRepository;
 
-    @Autowired
-    private Review2Repository review2Repository;
 
 
 
@@ -43,15 +40,9 @@ public class MainConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public Review1Service review1Service(){
-        return new Review1Service(review1Repository);
+    public ReviewService reviewService(){
+        return new ReviewService(reviewRepository);
     }
-
-    @Bean
-    public Review2Service review2Service(){
-        return new Review2Service(review2Repository);
-    }
-
 
 
     //특수기능=========================================================================================================
@@ -65,6 +56,6 @@ public class MainConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         System.out.println("으딜 감히");
         registry.addInterceptor(new LoginInterceptor())
-                .addPathPatterns("/Review1/**");
+                .addPathPatterns("/Review/**");
     }
 }

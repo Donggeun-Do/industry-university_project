@@ -22,6 +22,14 @@ public class HttpsHelper{
     long beforeTime;
 
 
+
+
+
+
+
+
+
+
     public String AutoLogin(){
         try {
             StringTokenizer str = new ShareData().GetEmailAndPassword();
@@ -77,38 +85,6 @@ public class HttpsHelper{
             e.printStackTrace();
             return  null;
         }
-    }
-
-    public BufferedReader HttpConnect(String Request){
-        if((Universal.abbr.getId() == null) || System.currentTimeMillis() -  beforeTime > 800000  ){
-            String answer =  AutoLogin();
-            if(!answer.equals("True")){
-                return null;
-            }
-        }
-        try {
-            GetConnection connection = new GetConnection(Request);
-            connection.start();
-            connection.join();
-            beforeTime = System.currentTimeMillis();
-            return connection.br;
-        }catch (Exception e){ return  null;}
-    }
-
-    public BufferedReader HttpConnectWithAPi(String Request, List<String> Params){
-        if((Universal.abbr.getId() == null) || System.currentTimeMillis() -  beforeTime > 800000  ){
-            String answer =  AutoLogin();
-            if(!answer.equals("True")){
-                return null;
-            }
-        }
-        try {
-            GetConnection connection = new GetConnection(Request,Params);
-            connection.start();
-            connection.join();
-            beforeTime = System.currentTimeMillis();
-            return connection.br;
-        }catch (Exception e){ return  null;}
     }
 
     public Address KakaoKeywordSearch(String query){

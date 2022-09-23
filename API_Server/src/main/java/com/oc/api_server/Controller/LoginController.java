@@ -177,9 +177,4 @@ public class LoginController {
             return "세션 유지 못함";
         }
     }
-
-
-
-
-
 }
