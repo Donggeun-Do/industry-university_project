@@ -45,11 +45,12 @@ public class GetConnection extends Thread{
         this.code = 1;
     }
 
-    public GetConnection(String address,String Request , List<String> params){
-        this.address = address;
-        this.Request = Request;
-        this.params = params;
-        this.code = 4;
+    public GetConnection(boolean is_null){
+        if(is_null){
+            this.code = 4;
+        }else{
+            this.code = 0;
+        }
     }
 
     @Override
@@ -63,9 +64,6 @@ public class GetConnection extends Thread{
                 break;
             case 3:
                 ReQuest();
-                break;
-            case 4:
-                UsingAPI();
                 break;
         }
     }
@@ -123,20 +121,18 @@ public class GetConnection extends Thread{
 
             StringBuffer sb = new StringBuffer();
 
-            for(int i=0;i<params.size();i++){
-                if(i%2 ==0){
-                    sb.append(params.get(i)+"=");
-                }else{
-                    sb.append(params.get(i)+"&");
-                }
+            sb.append("params=");
+            StringBuffer ssb = new StringBuffer();
+
+            for(String t : params){
+                ssb.append(t+"*-*");
             }
-            sb.setLength(sb.length()-1);
+            sb.append(ConvertToServer(Universal.security.encryptionBySessionKey(ssb.toString())));
             if(conn.getDoOutput()) {
                 conn.getOutputStream().write((sb.toString()).getBytes());
                 conn.getOutputStream().flush();
                 conn.getOutputStream().close();
             }
-            System.out.println(sb.toString());
             conn.connect();
 
             InputStream response = conn.getInputStream();
@@ -172,46 +168,8 @@ public class GetConnection extends Thread{
     }
 
 
-    /**
-     * API 사용
-     */
-    //todo 오픈 api 사용 가능하도록 만들어야함
-    private void UsingAPI(){
-        try {
-            URL obj = new URL(address+Request);
-            HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
-            conn.setRequestProperty("Cookie", "JSESSIONID="+ Universal.abbr.getId());
-            conn.setDefaultUseCaches(false);
-            conn.setDoOutput(true);
-
-            StringBuffer sb = new StringBuffer();
-
-            for(int i=0;i<params.size();i++){
-                if(i%2 ==0){
-                    sb.append(params.get(i)+"=");
-                }else{
-                    sb.append(params.get(i)+"&");
-                }
-            }
-            sb.setLength(sb.length()-1);
-            if(conn.getDoOutput()) {
-                conn.getOutputStream().write((sb.toString()).getBytes());
-                conn.getOutputStream().flush();
-                conn.getOutputStream().close();
-            }
-
-            conn.connect();
-
-            InputStream response = conn.getInputStream();
-            InputStreamReader reader = new InputStreamReader(response,"UTF-8");
-            br = new BufferedReader(reader);
-            answer = "True";
-        }catch (Exception e){
-            e.printStackTrace();
-            answer= "Err";
-        }
+    private String ConvertToServer(String input){
+        return input.replace("&","a**b**a").replace("=","b**a**b").replace("%","c**b**c");
     }
 
 }

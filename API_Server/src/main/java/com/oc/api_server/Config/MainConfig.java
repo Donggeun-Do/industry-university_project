@@ -1,6 +1,7 @@
 package com.oc.api_server.Config;
 
 import com.oc.api_server.Repository.ReviewRepository;
+import com.oc.api_server.Repository.SessionRepository;
 import com.oc.api_server.Repository.UserRepository;
 import com.oc.api_server.Service.*;
 import com.oc.api_server.interceptor.LoginInterceptor;
@@ -23,6 +24,9 @@ public class MainConfig implements WebMvcConfigurer {
 
     @Autowired
     private ReviewRepository reviewRepository;
+
+    @Autowired
+    private SessionRepository sessionRepository;
 
 
 
