@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="com.oc.api_server.VO.OrUser" alias="OrUser"/>
+        <typeAlias type="com.oc.api_server.VO.Review1" alias="Review1"/>
+        <typeAlias type="com.oc.api_server.VO.SimpleReview1" alias="SimpleReview1"/>
+    </typeAliases>
+</configuration>
